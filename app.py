@@ -8,13 +8,13 @@ import os
 @st.cache_data
 def load_data():
    # Get the directory that app.py is running in
-   BASE_DIR = os.path.dirname(os.path.abspath("G:\project\movie recommender app\app.py"))
+   BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # Safely open your files using the absolute directory paths
    movies = pickle.load(open(os.path.join(BASE_DIR, 'movies.pkl'), 'rb'))
    movies_dict = pickle.load(open(os.path.join(BASE_DIR, 'movies_dict.pkl'), 'rb'))
    similarity = pickle.load(open(os.path.join(BASE_DIR, 'similarity.pkl'), 'rb'))
-
+   return movies, movies_dict, similarity
 @st.cache_data
 def fetch_movie_details(movie_id):
     """Cache poster URLs and IMDB IDs to avoid repeated API calls"""
