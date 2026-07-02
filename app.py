@@ -3,14 +3,17 @@ import streamlit as st
 import pandas as pd
 import requests 
 from concurrent.futures import ThreadPoolExecutor, as_completed
+import os
 
 @st.cache_data
 def load_data():
-    """Cache pickle files to avoid reloading on every rerun"""
-    movies_dict = pickle.load(open('movies_dict.pkl', 'rb'))
-    movies = pd.DataFrame(movies_dict)
-    similarity = pickle.load(open('similarity.pkl', 'rb'))
-    return movies, similarity
+   # Get the directory that app.py is running in
+   BASE_DIR = os.path.dirname(os.path.abspath("G:\project\movie recommender app\app.py"))
+
+# Safely open your files using the absolute directory paths
+   movies = pickle.load(open(os.path.join(BASE_DIR, 'movies.pkl'), 'rb'))
+   movies_dict = pickle.load(open(os.path.join(BASE_DIR, 'movies_dict.pkl'), 'rb'))
+   similarity = pickle.load(open(os.path.join(BASE_DIR, 'similarity.pkl'), 'rb'))
 
 @st.cache_data
 def fetch_movie_details(movie_id):
