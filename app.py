@@ -77,7 +77,7 @@ def recommend(movie, movies, similarity):
      
      return recommended_movies, recommended_movie_posters, recommended_movie_imdb_urls
 
-movies, similarity = load_data()
+movies, movies_dict, similarity = load_data()
 
 
 st.title("MOVIE RECOMMENDER SYSTEM")
